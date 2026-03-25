@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Установка флагов стран - Визуальное руководство</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+            color: #ff6b35;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            font-size: 1.3em;
+            margin: 20px 0 10px;
+            color: #f7931e;
+        }
+        
+        .step {
+            background: rgba(255, 255, 255, 0.08);
+            border-left: 4px solid #ff6b35;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4ade80;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background: #000;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid #ff6b35;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: #4ade80;
+            font-size: 0.85em;
+        }
+        
+        .warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .success {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .flag-preview {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin: 5px;
+            font-size: 1.1em;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .files-list {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .files-list li {
+            font-family: 'Courier New', monospace;
+            color: #4ade80;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚩 Установка флагов стран в Supabase</h1>
+        <p style="font-size: 1.2em; opacity: 0.8; margin-bottom: 30px;">
+            Визуальное руководство по сохранению 6 флагов стран в базу данных
+        </p>
+
+        <div class="success">
+            <strong>✅ Что будет работать после установки:</strong>
+            <ul>
+                <li>Флаги загружаются из базы данных Supabase</li>
+                <li>Автоматическая синхронизация между устройствами</li>
+                <li>Кеширование на 1 час для быстрой загрузки</li>
+                <li>Fallback на локальные флаги если база недоступна</li>
+            </ul>
+        </div>
+
+        <h2><span class="step-number">1</span> Подготовка</h2>
+        <div class="step">
+            <h3>Файлы для установки:</h3>
+            <div class="files-list">
+                <ul>
+                    <li>📄 /insert-flags-quick.sql - Основной скрипт установки</li>
+                    <li>📄 /alternative-flags-urls.sql - Альтернативные CDN (для России)</li>
+                    <li>📄 /check-flags-queries.sql - Проверка установки</li>
+                    <li>📄 /test-flags-availability.sh - Тест доступности URL</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2><span class="step-number">2</span> Открыть Supabase Dashboard</h2>
+        <div class="step">
+            <ol>
+                <li>Перейдите на <a href="https://supabase.com" style="color: #4ade80;">https://supabase.com</a></li>
+                <li>Войдите в свой аккаунт</li>
+                <li>Выберите проект SubManager</li>
+                <li>В левом меню найдите <strong>"SQL Editor"</strong></li>
+                <li>Нажмите <code>+ New query</code></li>
+            </ol>
+        </div>
+
+        <h2><span class="step-number">3</span> Выполнить SQL скрипт</h2>
+        <div class="step">
+            <h3>Скопируйте и вставьте этот код в SQL Editor:</h3>
+            <pre><code>-- Создание таблицы и вставка 6 флагов
+CREATE TABLE IF NOT EXISTS country_flags (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  country_code TEXT NOT NULL UNIQUE,
+  language_code TEXT NOT NULL,
+  flag_url TEXT NOT NULL,
+  flag_emoji TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE country_flags ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Anyone can view country flags"
+  ON country_flags FOR SELECT USING (true);
+
+INSERT INTO country_flags (country_code, language_code, flag_url, flag_emoji) VALUES
+  ('RU', 'ru', 'https://flagcdn.com/w320/ru.png', '🇷🇺'),
+  ('GB', 'en', 'https://flagcdn.com/w320/gb.png', '🇬🇧'),
+  ('BY', 'be', 'https://flagcdn.com/w320/by.png', '🇧🇾'),
+  ('CN', 'zh', 'https://flagcdn.com/w320/cn.png', '🇨🇳'),
+  ('ES', 'es', 'https://flagcdn.com/w320/es.png', '🇪🇸'),
+  ('FR', 'fr', 'https://flagcdn.com/w320/fr.png', '🇫🇷')
+ON CONFLICT (country_code) DO UPDATE SET
+  flag_url = EXCLUDED.flag_url,
+  flag_emoji = EXCLUDED.flag_emoji,
+  updated_at = NOW();</code></pre>
+            
+            <div class="warning">
+                <strong>⚡ Важно:</strong>
+                <ul>
+                    <li>Нажмите <code>Run</code> или <code>Ctrl+Enter</code></li>
+                    <li>Дождитесь сообщения "Success"</li>
+                    <li>Если появилась ошибка - проверьте что скопировали весь код</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2><span class="step-number">4</span> Проверить результат</h2>
+        <div class="step">
+            <h3>Выполните проверочный запрос:</h3>
+            <pre><code>SELECT * FROM country_flags ORDER BY language_code;</code></pre>
+            
+            <h3>Ожидаемый результат (6 записей):</h3>
+            <div style="margin-top: 15px;">
+                <div class="flag-preview">🇧🇾 BY - Беларусь (be)</div>
+                <div class="flag-preview">🇨🇳 CN - Китай (zh)</div>
+                <div class="flag-preview">🇪🇸 ES - Испания (es)</div>
+                <div class="flag-preview">🇫🇷 FR - Франция (fr)</div>
+                <div class="flag-preview">🇬🇧 GB - Великобритания (en)</div>
+                <div class="flag-preview">🇷🇺 RU - Россия (ru)</div>
+            </div>
+        </div>
+
+        <h2><span class="step-number">5</span> Проверить на сайте</h2>
+        <div class="step">
+            <ol>
+                <li>Откройте ваш сайт SubManager</li>
+                <li>Найдите переключатель языка (иконка 🌐)</li>
+                <li>Нажмите на него</li>
+                <li>Флаги должны загрузиться из базы данных</li>
+            </ol>
+            
+            <div class="success">
+                <strong>✅ Если всё работает:</strong>
+                <p>Флаги отображаются рядом с названиями языков, и при наведении нет ошибок в консоли браузера (F12).</p>
+            </div>
+        </div>
+
+        <h2>🔧 Отладка (для владельцев)</h2>
+        <div class="step">
+            <p>Если вы владелец (<code>max.sokolvp@gmail.com</code> или <code>belovodvadim@gmail.com</code>):</p>
+            <ol>
+                <li>Откройте страницу <strong>Настройки (Settings)</strong></li>
+                <li>Прокрутите вниз до конца страницы</li>
+                <li>Найдите панель <strong>"Отладка флагов"</strong></li>
+                <li>Проверьте статус каждого флага:
+                    <ul>
+                        <li>🟢 Зелёный кружок = флаг загружается</li>
+                        <li>❌ Красный крестик = URL недоступен</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <h2>🌍 Для пользователей из России</h2>
+        <div class="warning">
+            <strong>⚠️ Если flagcdn.com заблокирован:</strong>
+            <p>Выполните альтернативный SQL скрипт:</p>
+            <pre><code>-- Переключение на FlagsAPI (работает в России)
+UPDATE country_flags SET flag_url = 'https://flagsapi.com/RU/flat/64.png' WHERE country_code = 'RU';
+UPDATE country_flags SET flag_url = 'https://flagsapi.com/GB/flat/64.png' WHERE country_code = 'GB';
+UPDATE country_flags SET flag_url = 'https://flagsapi.com/BY/flat/64.png' WHERE country_code = 'BY';
+UPDATE country_flags SET flag_url = 'https://flagsapi.com/CN/flat/64.png' WHERE country_code = 'CN';
+UPDATE country_flags SET flag_url = 'https://flagsapi.com/ES/flat/64.png' WHERE country_code = 'ES';
+UPDATE country_flags SET flag_url = 'https://flagsapi.com/FR/flat/64.png' WHERE country_code = 'FR';</code></pre>
+        </div>
+
+        <h2>❓ Часто задаваемые вопросы</h2>
+        <div class="step">
+            <h3>Флаги не отображаются на сайте?</h3>
+            <ul>
+                <li>Проверьте что SQL скрипт выполнился успешно</li>
+                <li>Откройте консоль браузера (F12) и проверьте ошибки</li>
+                <li>Очистите кеш браузера (Ctrl+Shift+Delete)</li>
+                <li>Проверьте подключение к Supabase</li>
+            </ul>
+
+            <h3>Как изменить размер флагов?</h3>
+            <p>В URL можно изменить размер, например:</p>
+            <code>https://flagcdn.com/w320/ru.png</code> → <code>https://flagcdn.com/w160/ru.png</code>
+            <br><br>
+            <p>Доступные размеры: 16, 20, 24, 32, 40, 48, 64, 80, 96, 120, 160, 240, 320</p>
+
+            <h3>Как добавить новый флаг?</h3>
+            <pre><code>INSERT INTO country_flags (country_code, language_code, flag_url, flag_emoji)
+VALUES ('DE', 'de', 'https://flagcdn.com/w320/de.png', '🇩🇪');</code></pre>
+        </div>
+
+        <div class="success" style="margin-top: 40px; text-align: center; padding: 30px;">
+            <h2 style="color: #22c55e; margin-bottom: 15px;">🎉 Готово!</h2>
+            <p style="font-size: 1.2em;">
+                Флаги стран успешно сохранены в базу данных.<br>
+                Теперь они будут синхронизироваться на всех ваших устройствах!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

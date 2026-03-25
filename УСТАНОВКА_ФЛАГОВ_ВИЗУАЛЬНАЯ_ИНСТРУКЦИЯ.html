@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Установка флагов стран - SubManager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            border-left: 5px solid #FF6B35;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .step h2 {
+            color: #FF6B35;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .step h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+        }
+        
+        .step ol {
+            margin-left: 20px;
+        }
+        
+        .step li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .flag-preview {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .flag-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .flag-item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .flag-item .emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .flag-item h4 {
+            color: #333;
+            margin: 10px 0 5px 0;
+        }
+        
+        .flag-item p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .table th,
+        .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .table th {
+            background: #FF6B35;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .table tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #FF6B35;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            background: #F7931E;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .checklist li {
+            padding: 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .checklist li:before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .flag-preview {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Установка флагов стран в SubManager</h1>
+            <p>Подробная инструкция по добавлению флагов в Supabase Database</p>
+        </div>
+        
+        <div class="content">
+            <!-- Шаг 1 -->
+            <div class="step">
+                <h2>📋 Шаг 1: Откройте Supabase Dashboard</h2>
+                <ol>
+                    <li>Перейдите на <a href="https://supabase.com" target="_blank">https://supabase.com</a></li>
+                    <li>Войдите в свой проект <strong>SubManager</strong></li>
+                    <li>В боковом меню выберите <strong>SQL Editor</strong></li>
+                </ol>
+                
+                <div class="info">
+                    <strong>💡 Подсказка:</strong> SQL Editor находится в разделе "Database" в левом меню.
+                </div>
+            </div>
+            
+            <!-- Шаг 2 -->
+            <div class="step">
+                <h2>⚡ Шаг 2: Выполните SQL скрипт</h2>
+                <ol>
+                    <li>В SQL Editor нажмите <strong>"New query"</strong> или <strong>"+ New query"</strong></li>
+                    <li>Откройте файл <code>/supabase-country-flags-table.sql</code> в вашем проекте</li>
+                    <li>Скопируйте <strong>ВЕСЬ</strong> код из файла</li>
+                    <li>Вставьте код в редактор Supabase</li>
+                    <li>Нажмите кнопку <strong>"Run"</strong> (или Ctrl/Cmd + Enter)</li>
+                    <li>Дождитесь сообщения ✅ <strong>Success</strong></li>
+                </ol>
+                
+                <div class="success">
+                    <strong>✅ Успех!</strong> Если вы видите "Success" - таблица создана и данные добавлены!
+                </div>
+                
+                <div class="warning">
+                    <strong>⚠️ Важно:</strong> Убедитесь что скопировали ВЕСЬ код, включая INSERT команды в конце файла.
+                </div>
+            </div>
+            
+            <!-- Шаг 3 -->
+            <div class="step">
+                <h2>🔍 Шаг 3: Проверьте результат</h2>
+                <ol>
+                    <li>В боковом меню Supabase выберите <strong>Table Editor</strong></li>
+                    <li>Найдите таблицу <strong>country_flags</strong> в списке слева</li>
+                    <li>Убедитесь что в таблице есть <strong>4 записи</strong></li>
+                </ol>
+                
+                <h3>Должны быть следующие флаги:</h3>
+                
+                <div class="flag-preview">
+                    <div class="flag-item">
+                        <div class="emoji">🇷🇺</div>
+                        <h4>Россия (RU)</h4>
+                        <p>Язык: ru</p>
+                        <p>URL: flagcdn.com/w320/ru.png</p>
+                    </div>
+                    
+                    <div class="flag-item">
+                        <div class="emoji">🇬🇧</div>
+                        <h4>Великобритания (GB)</h4>
+                        <p>Язык: en</p>
+                        <p>URL: flagcdn.com/w320/gb.png</p>
+                    </div>
+                    
+                    <div class="flag-item">
+                        <div class="emoji">🇧🇾</div>
+                        <h4>Беларусь (BY)</h4>
+                        <p>Язык: be</p>
+                        <p>URL: flagcdn.com/w320/by.png</p>
+                    </div>
+                    
+                    <div class="flag-item">
+                        <div class="emoji">🇨🇳</div>
+                        <h4>Китай (CN)</h4>
+                        <p>Язык: zh</p>
+                        <p>URL: flagcdn.com/w320/cn.png</p>
+                    </div>
+                </div>
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Код страны</th>
+                            <th>Язык</th>
+                            <th>URL флага</th>
+                            <th>Emoji</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RU</td>
+                            <td>ru (Русский)</td>
+                            <td>https://flagcdn.com/w320/ru.png</td>
+                            <td>🇷🇺</td>
+                        </tr>
+                        <tr>
+                            <td>GB</td>
+                            <td>en (English)</td>
+                            <td>https://flagcdn.com/w320/gb.png</td>
+                            <td>🇬🇧</td>
+                        </tr>
+                        <tr>
+                            <td>BY</td>
+                            <td>be (Беларуская)</td>
+                            <td>https://flagcdn.com/w320/by.png</td>
+                            <td>🇧🇾</td>
+                        </tr>
+                        <tr>
+                            <td>CN</td>
+                            <td>zh (中文)</td>
+                            <td>https://flagcdn.com/w320/cn.png</td>
+                            <td>🇨🇳</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Проверка на сайте -->
+            <div class="step">
+                <h2>🌐 Шаг 4: Проверьте флаги на сайте</h2>
+                <ol>
+                    <li>Откройте ваш опубликованный сайт: <code>https://body-order-32825369.figma.site</code></li>
+                    <li>Найдите переключатель языков (иконка глобуса 🌐 + флаг)</li>
+                    <li>Убедитесь что <strong>флаг текущего языка отображается</strong></li>
+                    <li>Кликните на переключатель чтобы открыть выпадающий список</li>
+                    <li>Проверьте что <strong>все 4 флага видны и отображаются корректно</strong></li>
+                </ol>
+                
+                <div class="success">
+                    <strong>✅ Отлично!</strong> Если флаги отображаются - установка прошла успешно!
+                </div>
+            </div>
+            
+            <!-- Что было сделано -->
+            <div class="step">
+                <h2>✨ Что было сделано в коде</h2>
+                
+                <h3>Обновлен компонент LanguageSelector</h3>
+                <p>Файл: <code>/src/app/components/LanguageSelector.tsx</code></p>
+                
+                <ul class="checklist">
+                    <li>Добавлена загрузка флагов из Supabase Database</li>
+                    <li>Используется useEffect для автоматической загрузки</li>
+                    <li>Резервные figma:asset флаги на случай ошибки</li>
+                    <li>Флаги кешируются в state компонента</li>
+                    <li>Автоматический fallback при ошибке загрузки</li>
+                </ul>
+                
+                <h3>Логика работы:</h3>
+                <ol>
+                    <li>При загрузке компонента → запрос к Supabase <code>country_flags</code></li>
+                    <li>Если успех → используются флаги из CDN (flagcdn.com)</li>
+                    <li>Если ошибка → используются резервные локальные флаги</li>
+                    <li>Флаги сохраняются в state для быстрого доступа</li>
+                </ol>
+            </div>
+            
+            <!-- Архитектура -->
+            <div class="step">
+                <h2>🏗️ Архитектура решения</h2>
+                
+                <div class="code-block" style="background: white; color: #333; border: 2px solid #ddd; font-family: monospace;">
+┌─────────────────────────────────────┐
+│    LanguageSelector Component       │
+│  (загружает флаги при монтировании) │
+└──────────────┬──────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────┐
+│       Supabase Database             │
+│  ┌──────────────────────────────┐   │
+│  │  Таблица: country_flags      │   │
+│  │  ┌────────────────────────┐  │   │
+│  │  │ RU → flagcdn.com/ru    │  │   │
+│  │  │ GB → flagcdn.com/gb    │  │   │
+│  │  │ BY → flagcdn.com/by    │  │   │
+│  │  │ CN → flagcdn.com/cn    │  │   │
+│  │  └────────────────────────┘  │   │
+│  │  🔒 RLS: Чтение для всех    │   │
+│  └──────────────────────────────┘   │
+└─────────────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────┐
+│       Flagpedia CDN                 │
+│  https://flagcdn.com                │
+│  🌐 Публичный CDN                   │
+│  ⚡ Быстрая загрузка                │
+└─────────────────────────────────────┘
+                </div>
+            </div>
+            
+            <!-- Преимущества -->
+            <div class="step">
+                <h2>🎯 Преимущества решения</h2>
+                
+                <ul class="checklist">
+                    <li><strong>Работает везде:</strong> На любом опубликованном сайте</li>
+                    <li><strong>Быстро:</strong> CDN обеспечивает мгновенную загрузку</li>
+                    <li><strong>Безопасно:</strong> RLS политики защищают данные</li>
+                    <li><strong>Централизованно:</strong> Один источник для всех флагов</li>
+                    <li><strong>Надежно:</strong> Автоматический fallback на резервные флаги</li>
+                    <li><strong>Адаптивно:</strong> Работает на всех устройствах</li>
+                </ul>
+            </div>
+            
+            <!-- Решение проблем -->
+            <div class="step">
+                <h2>🔧 Решение возможных проблем</h2>
+                
+                <h3>❌ Проблема: SQL скрипт не выполняется</h3>
+                <div class="warning">
+                    <strong>Решение:</strong>
+                    <ol>
+                        <li>Убедитесь что скопировали ВЕСЬ код из файла</li>
+                        <li>Проверьте что проект Supabase активен</li>
+                        <li>Попробуйте выполнить скрипт по частям</li>
+                    </ol>
+                </div>
+                
+                <h3>❌ Проблема: Флаги не отображаются на сайте</h3>
+                <div class="warning">
+                    <strong>Решение:</strong>
+                    <ol>
+                        <li>Откройте консоль браузера (F12)</li>
+                        <li>Проверьте наличие ошибок</li>
+                        <li>Убедитесь что таблица country_flags создана</li>
+                        <li>Проверьте CDN: <a href="https://flagcdn.com/w320/ru.png" target="_blank">flagcdn.com/w320/ru.png</a></li>
+                    </ol>
+                </div>
+                
+                <h3>❌ Проблема: Ошибка в консоли браузера</h3>
+                <div class="info">
+                    Если видите ошибку загрузки флагов - не волнуйтесь! Приложение автоматически переключится на резервные флаги. Проверьте что:
+                    <ul>
+                        <li>Таблица country_flags существует</li>
+                        <li>В таблице есть 4 записи</li>
+                        <li>RLS политики настроены правильно</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Итог -->
+            <div class="success" style="text-align: center; padding: 40px;">
+                <h2 style="margin-bottom: 20px;">🎉 Готово!</h2>
+                <p style="font-size: 1.2em; margin-bottom: 20px;">
+                    Флаги стран успешно добавлены в базу данных!<br>
+                    Теперь они будут корректно отображаться на всех устройствах.
+                </p>
+                <p style="font-size: 3em;">🇷🇺 🇬🇧 🇧🇾 🇨🇳</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>SubManager</strong> - Управление подписками</p>
+            <p>Дата: 25 марта 2026 | Статус: ✅ ГОТОВО</p>
+        </div>
+    </div>
+</body>
+</html>

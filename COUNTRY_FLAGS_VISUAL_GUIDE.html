@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇷🇺🇬🇧🇧🇾🇨🇳 Установка флагов стран - SubManager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #252525;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(90deg, #ff6600, #ff9900) 1;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ff6600, #ff9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            color: #999;
+        }
+        
+        .problem-box {
+            background: #ff6600;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 5px solid #ff9900;
+        }
+        
+        .problem-box h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .solution-box {
+            background: linear-gradient(135deg, #00cc66 0%, #00994d 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 5px solid #00ff88;
+        }
+        
+        .solution-box h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .steps {
+            display: grid;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .step {
+            background: #333;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #ff6600;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.3);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff6600, #ff9900);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+            float: left;
+        }
+        
+        .step-content {
+            overflow: hidden;
+        }
+        
+        .step-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #ff9900;
+        }
+        
+        .step-content p {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #444;
+            overflow-x: auto;
+        }
+        
+        .code-block code {
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+        
+        .flags-demo {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .flag-item {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .flag-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.5);
+        }
+        
+        .flag-emoji {
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+        
+        .flag-name {
+            font-size: 1.2em;
+            color: #ff9900;
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background: #ff9900;
+            color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .success-box {
+            background: #00cc66;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .checklist {
+            background: #333;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .checklist-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #252525;
+            border-radius: 10px;
+            border-left: 4px solid #ff6600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checklist-item:hover {
+            background: #2d2d2d;
+            border-left-color: #00cc66;
+        }
+        
+        .checklist-item::before {
+            content: "☐ ";
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: #ff6600;
+        }
+        
+        .architecture {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #ff6600;
+        }
+        
+        .architecture pre {
+            color: #00ff88;
+            font-size: 0.9em;
+            overflow-x: auto;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ff6600, #ff9900);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.5);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #444;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .step-number {
+                float: none;
+                display: block;
+                margin: 0 auto 15px;
+            }
+            
+            .flags-demo {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🇷🇺🇬🇧🇧🇾🇨🇳 Флаги стран в SubManager</h1>
+            <p class="subtitle">Руководство по установке системы отображения флагов</p>
+        </div>
+
+        <!-- Problem -->
+        <div class="problem-box">
+            <h2>❌ Проблема</h2>
+            <p><strong>Флаги не отображаются на опубликованном сайте!</strong></p>
+            <p>При переходе на <code>https://body-order-32825369.figma.site</code> флаги стран не показываются, потому что они используют локальную схему <code>figma:asset</code>, ��оторая работает только в Figma Make.</p>
+        </div>
+
+        <!-- Solution -->
+        <div class="solution-box">
+            <h2>✅ Решение</h2>
+            <p><strong>Сохранить флаги в Supabase Database!</strong></p>
+            <p>Мы создадим таблицу <code>country_flags</code> в базе данных и будем загружать флаги с публичного CDN (Flagpedia), который работает везде.</p>
+        </div>
+
+        <!-- Flags Demo -->
+        <div class="flags-demo">
+            <div class="flag-item">
+                <div class="flag-emoji">🇷🇺</div>
+                <div class="flag-name">Русский</div>
+            </div>
+            <div class="flag-item">
+                <div class="flag-emoji">🇬🇧</div>
+                <div class="flag-name">English</div>
+            </div>
+            <div class="flag-item">
+                <div class="flag-emoji">🇧🇾</div>
+                <div class="flag-name">Беларуская</div>
+            </div>
+            <div class="flag-item">
+                <div class="flag-emoji">🇨🇳</div>
+                <div class="flag-name">中文</div>
+            </div>
+        </div>
+
+        <!-- Steps -->
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Откройте Supabase Dashboard</h3>
+                    <p>Перейдите на сайт Supabase и откройте ваш проект SubManager:</p>
+                    <div class="code-block">
+                        <code>https://supabase.com/dashboard</code>
+                    </div>
+                    <p>Выберите ваш проект из списка.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Откройте SQL Editor</h3>
+                    <p>В левом меню найдите раздел <strong>SQL Editor</strong> и нажмите на него.</p>
+                    <p>Затем нажмите кнопку <strong>New query</strong> для создания нового запроса.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Вставьте SQL скрипт</h3>
+                    <p>Откройте файл в вашем проекте:</p>
+                    <div class="code-block">
+                        <code>/supabase-country-flags-table.sql</code>
+                    </div>
+                    <p><strong>Шаги:</strong></p>
+                    <ol style="margin-left: 20px; color: #ccc;">
+                        <li>Откройте файл в редакторе</li>
+                        <li>Выделите весь текст (Ctrl+A)</li>
+                        <li>Скопируйте (Ctrl+C)</li>
+                        <li>Вставьте в SQL Editor в Supabase (Ctrl+V)</li>
+                        <li>Нажмите <strong>Run</strong> (или Ctrl+Enter)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Дождитесь успешного выполнения</h3>
+                    <p>После нажатия <strong>Run</strong> вы должны увидеть сообщение:</p>
+                    <div class="success-box">
+                        ✅ Success
+                    </div>
+                    <p>Это означает что таблица создана и данные добавлены!</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Проверьте таблицу</h3>
+                    <p>Откройте <strong>Table Editor</strong> в левом меню.</p>
+                    <p>Найдите таблицу <code>country_flags</code> в списке.</p>
+                    <p>Убедитесь что в таблице есть <strong>4 записи</strong>:</p>
+                    <div class="code-block">
+                        <code>
+🇷🇺 RU → ru → https://flagcdn.com/w320/ru.png<br>
+🇬🇧 GB → en → https://flagcdn.com/w320/gb.png<br>
+🇧🇾 BY → be → https://flagcdn.com/w320/by.png<br>
+🇨🇳 CN → zh → https://flagcdn.com/w320/cn.png
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h3>Проверьте на сайте</h3>
+                    <p>Откройте опубликованный сайт:</p>
+                    <div class="code-block">
+                        <code>https://body-order-32825369.figma.site</code>
+                    </div>
+                    <p><strong>Что проверить:</strong></p>
+                    <ul style="margin-left: 20px; color: #ccc;">
+                        <li>Найдите переключатель языков (иконка 🌐 + флаг)</li>
+                        <li>Убедитесь что флаг текущего языка отображается</li>
+                        <li>Нажмите на переключатель</li>
+                        <li>Все 4 флага должны быть видны в выпадающем списке</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="checklist">
+            <h2 style="margin-bottom: 20px; color: #ff9900;">📋 Чеклист проверки</h2>
+            <div class="checklist-item">SQL скрипт выполнен без ошибок</div>
+            <div class="checklist-item">Таблица country_flags создана</div>
+            <div class="checklist-item">В таблице 4 записи (RU, GB, BY, CN)</div>
+            <div class="checklist-item">Флаги отображаются на сайте</div>
+            <div class="checklist-item">Выпадающий список показывает все флаги</div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="architecture">
+            <h2 style="margin-bottom: 20px; color: #ff9900;">🏗️ Архитектура решения</h2>
+            <pre>
+┌──────��──────────────────────────────────┐
+│    LanguageSelector Component           │
+│  (загружает флаги при запуске)          │
+└───────────────┬─────────────────────────┘
+                │
+                ▼
+┌─────────────────────────────────────────┐
+│        Supabase Database                │
+│                                          │
+│   Таблица: country_flags                │
+│   ┌──────────────────────────────────┐  │
+│   │ 🇷🇺 RU → flagcdn.com/w320/ru   │  │
+│   │ 🇬🇧 GB → flagcdn.com/w320/gb   │  │
+│   │ 🇧🇾 BY → flagcdn.com/w320/by   │  │
+│   │ 🇨🇳 CN → flagcdn.com/w320/cn   │  │
+│   └──────────────────────────────────┘  │
+└─────────────────────────────────────────┘
+                │
+                ▼
+┌────────────────────────────���────────────┐
+│        Flagpedia CDN                    │
+│     (https://flagcdn.com)               │
+│                                          │
+│   ⚡ Быстрая загрузка                   │
+│   🌐 Работает везде                     │
+│   🆓 Бесплатно                          │
+└─────────────────────────────────────────┘
+            </pre>
+        </div>
+
+        <!-- Warning -->
+        <div class="warning-box">
+            ⚠️ <strong>Важно:</strong> Резервные <code>figma:asset</code> флаги работают только локально. На опубликованном сайте обязательно нужны флаги из базы данных!
+        </div>
+
+        <!-- Success -->
+        <div class="success-box">
+            🎉 <strong>Готово!</strong> Теперь флаги корректно отображаются на всех устройствах и платформах!
+        </div>
+
+        <!-- Buttons -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="#" class="btn" onclick="alert('Откройте файл /COUNTRY_FLAGS_README.md'); return false;">📖 Полная документация</a>
+            <a href="#" class="btn" onclick="alert('Откройте файл /supabase-country-flags-table.sql'); return false;">💾 SQL скрипт</a>
+            <a href="#" class="btn" onclick="alert('Откройте файл /CHECKLIST_COUNTRY_FLAGS.md'); return false;">✅ Чеклист</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>SubManager</strong> - Управление подписками</p>
+            <p>Создано: 25 марта 2026 | Статус: ✅ Готово к применению</p>
+            <p style="margin-top: 20px; font-size: 0.9em;">
+                Документация: /COUNTRY_FLAGS_README.md<br>
+                SQL скрипт: /supabase-country-flags-table.sql<br>
+                Чеклист: /CHECKLIST_COUNTRY_FLAGS.md
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Интерактивные чеклисты
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.style.opacity === '0.5') {
+                    this.style.opacity = '1';
+                    this.style.borderLeftColor = '#ff6600';
+                    this.innerHTML = this.innerHTML.replace('☑', '☐');
+                } else {
+                    this.style.opacity = '0.5';
+                    this.style.borderLeftColor = '#00cc66';
+                    this.innerHTML = this.innerHTML.replace('☐', '☑');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

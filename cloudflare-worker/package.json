@@ -1,0 +1,17 @@
+{
+  "name": "submanager-supabase-proxy",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker proxy for Supabase to bypass Russian blocking",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:production": "wrangler deploy --env production"
+  },
+  "keywords": ["cloudflare", "worker", "supabase", "proxy"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

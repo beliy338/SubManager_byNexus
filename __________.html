@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройка доступа без VPN - SubManager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .step {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .step h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: #5568d3;
+        }
+
+        .link-box {
+            background: #e7f3ff;
+            border: 2px solid #2196F3;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            word-break: break-all;
+        }
+
+        .link-box a {
+            color: #2196F3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .success-icon {
+            color: #28a745;
+            font-size: 1.5em;
+        }
+
+        .warning-icon {
+            color: #ffc107;
+            font-size: 1.5em;
+        }
+
+        footer {
+            background: #2d2d2d;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .timeline-item {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .timeline-icon {
+            background: #667eea;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 SubManager</h1>
+            <p>Настройка доступа БЕЗ VPN за 5 минут</p>
+        </header>
+
+        <div class="content">
+            <div class="alert">
+                <strong>⚠️ Проблема:</strong> Supabase заблокирован в России, приложение не работает без VPN
+            </div>
+
+            <div class="alert alert-success">
+                <strong>✅ Решение:</strong> Используем Cloudflare Workers как прокси-сервер. Бесплатно, быстро, надежно!
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">📝</div>
+                    <strong>Регистрация</strong>
+                    <div>2 минуты</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">⚙️</div>
+                    <strong>Настройка</strong>
+                    <div>2 минуты</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎉</div>
+                    <strong>Работает!</strong>
+                    <div>1 минута</div>
+                </div>
+            </div>
+
+            <!-- ШАГ 1 -->
+            <div class="step">
+                <h2>
+                    <span class="step-number">1</span>
+                    Регистрация на Cloudflare
+                </h2>
+                <p>Откройте в браузере:</p>
+                <div class="link-box">
+                    <a href="https://dash.cloudflare.com/sign-up" target="_blank">
+                        👉 https://dash.cloudflare.com/sign-up
+                    </a>
+                </div>
+                <ul>
+                    <li>Заполните форму регистрации (Email + Пароль)</li>
+                    <li>Нажмите <strong>Sign Up</strong></li>
+                    <li>Подтвердите email (проверьте почту)</li>
+                </ul>
+                <p><em>⏱️ Время: 2 минуты</em></p>
+            </div>
+
+            <!-- ШАГ 2 -->
+            <div class="step">
+                <h2>
+                    <span class="step-number">2</span>
+                    Создание Worker
+                </h2>
+                <p>После входа в Cloudflare Dashboard:</p>
+                <ul>
+                    <li>В <span class="highlight">левом меню</span> найдите <strong>Workers & Pages</strong></li>
+                    <li>Нажмите <strong>Create application</strong></li>
+                    <li>Выберите вкладку <strong>Workers</strong></li>
+                    <li>Нажмите <strong>Create Worker</strong></li>
+                    <li>Название: <code>submanager-supabase-proxy</code></li>
+                    <li>Нажмите <strong>Deploy</strong></li>
+                </ul>
+                <p><em>⏱️ Время: 1 минута</em></p>
+            </div>
+
+            <!-- ШАГ 3 -->
+            <div class="step">
+                <h2>
+                    <span class="step-number">3</span>
+                    Вставка кода
+                </h2>
+                <p>На странице созданного Worker:</p>
+                <ul>
+                    <li>Нажмите <strong>Edit code</strong> (или <strong>Quick Edit</strong>)</li>
+                    <li><span class="highlight">Выделите ВСЕ</span> (Ctrl+A) и <span class="highlight">удалите</span> (Delete)</li>
+                    <li>Откройте файл <strong>cloudflare-worker-code.js</strong> из проекта</li>
+                    <li>Скопируйте весь код из файла (Ctrl+A, Ctrl+C)</li>
+                    <li>Вставьте в редактор Cloudflare (Ctrl+V)</li>
+                    <li>Нажмите <strong>Save and Deploy</strong></li>
+                </ul>
+                <div class="alert alert-success">
+                    <strong>✅ Готово!</strong> Вы должны увидеть "Successfully deployed"
+                </div>
+                <p><em>⏱️ Время: 2 минуты</em></p>
+            </div>
+
+            <!-- ШАГ 4 -->
+            <div class="step">
+                <h2>
+                    <span class="step-number">4</span>
+                    Получение URL Worker
+                </h2>
+                <p>Найдите URL вашего Worker (он будет выглядеть так):</p>
+                <div class="code-block">
+                    <code>https://submanager-supabase-proxy.ВАША-ЧАСТЬ.workers.dev</code>
+                </div>
+                <p>Где найти:</p>
+                <ul>
+                    <li>На главной странице Worker в разделе <strong>Preview</strong></li>
+                    <li>Или: Settings → Triggers → Routes</li>
+                </ul>
+                <div class="alert">
+                    <strong>⚠️ ВАЖНО:</strong> Скопируйте этот URL! Он понадобится на следующем шаге.
+                </div>
+                <p><em>⏱️ Время: 30 секунд</em></p>
+            </div>
+
+            <!-- ШАГ 5 -->
+            <div class="step">
+                <h2>
+                    <span class="step-number">5</span>
+                    Проверка работы
+                </h2>
+                <p>Откройте в браузере (замените на ваш URL):</p>
+                <div class="code-block">
+                    <code>https://submanager-supabase-proxy.ВАША-ЧАСТЬ.workers.dev/rest/v1/</code>
+                </div>
+                <p><strong>Что вы должны увидеть:</strong></p>
+                <ul>
+                    <li class="success-icon">✅ JSON ответ от Supabase API</li>
+                    <li class="success-icon">✅ Что-то вроде: <code>{"message":"The server is running..."}</code></li>
+                </ul>
+                <p>Если видите это - Worker работает правильно!</p>
+                <p><em>⏱️ Время: 30 секунд</em></p>
+            </div>
+
+            <!-- ШАГ 6 -->
+            <div class="step">
+                <h2>
+                    <span class="step-number">6</span>
+                    Настройка приложения
+                </h2>
+                <p>Создайте файл <strong>.env.production</strong> в корне проекта SubManager:</p>
+                <div class="code-block">
+                    <code>VITE_SUPABASE_PROXY_URL=https://submanager-supabase-proxy.ВАША-ЧАСТЬ.workers.dev</code>
+                </div>
+                <p><strong>Замените</strong> <code>ВАША-ЧАСТЬ</code> на реальный URL из шага 4!</p>
+
+                <hr style="margin: 20px 0;">
+
+                <p><strong>Альтернатива:</strong> Если используете хостинг с переменными окружения:</p>
+                <ul>
+                    <li><strong>Vercel:</strong> Settings → Environment Variables</li>
+                    <li><strong>Netlify:</strong> Site settings → Environment variables</li>
+                    <li><strong>GitHub Pages:</strong> Actions → Secrets</li>
+                </ul>
+                <p>Добавьте переменную:</p>
+                <ul>
+                    <li>Имя: <code>VITE_SUPABASE_PROXY_URL</code></li>
+                    <li>Значение: ваш URL Worker</li>
+                </ul>
+                <p><em>⏱️ Время: 1 минута</em></p>
+            </div>
+
+            <!-- ШАГ 7 -->
+            <div class="step">
+                <h2>
+                    <span class="step-number">7</span>
+                    Пересборка приложения
+                </h2>
+                <p><strong>Вариант А:</strong> Если есть доступ к командной строке:</p>
+                <div class="code-block">
+                    <code>npm run build</code>
+                </div>
+
+                <p><strong>Вариант Б:</strong> Если используете хостинг:</p>
+                <ul>
+                    <li><strong>Vercel:</strong> Deployments → Redeploy</li>
+                    <li><strong>Netlify:</strong> Deploys → Trigger deploy → Deploy site</li>
+                    <li><strong>GitHub:</strong> Actions → Re-run workflow</li>
+                </ul>
+                <p><em>⏱️ Время: 2-5 минут (зависит от платформы)</em></p>
+            </div>
+
+            <!-- ШАГ 8 -->
+            <div class="step">
+                <h2>
+                    <span class="step-number">8</span>
+                    Проверка (БЕЗ VPN!)
+                </h2>
+                <p>Откройте приложение SubManager <strong>БЕЗ VPN</strong> и проверьте:</p>
+                <ul>
+                    <li class="success-icon">✅ Приложение загружается</li>
+                    <li class="success-icon">✅ Можно войти в аккаунт</li>
+                    <li class="success-icon">✅ Подписки отображаются</li>
+                    <li class="success-icon">✅ Можно добавить/изменить подписки</li>
+                </ul>
+
+                <div class="alert alert-success">
+                    <strong>🎉 Поздравляю! Всё работает без VPN!</strong>
+                </div>
+
+                <p><strong>Не работает?</strong></p>
+                <ul>
+                    <li>Очистите кэш браузера (Ctrl+Shift+R)</li>
+                    <li>Откройте DevTools (F12) → Console и проверьте ошибки</li>
+                    <li>Убедитесь, что URL в .env.production правильный</li>
+                    <li>Проверьте, что приложение пересобрано</li>
+                </ul>
+            </div>
+
+            <!-- Дополнительная информация -->
+            <div class="step" style="border-left-color: #28a745;">
+                <h2 style="color: #28a745;">
+                    📊 Мониторинг и статистика
+                </h2>
+                <p>Чтобы посмотреть статистику использования Worker:</p>
+                <ul>
+                    <li>Откройте Cloudflare Dashboard</li>
+                    <li>Workers & Pages → Ваш Worker</li>
+                    <li>Вкладка <strong>Analytics</strong></li>
+                </ul>
+                <p>Здесь вы увидите:</p>
+                <ul>
+                    <li>Количество запросов</li>
+                    <li>Ошибки (если есть)</li>
+                    <li>Производительность</li>
+                </ul>
+
+                <p style="margin-top: 20px;"><strong>Лимиты бесплатного тарифа:</strong></p>
+                <ul>
+                    <li class="success-icon">✅ 100,000 запросов в день</li>
+                    <li class="success-icon">✅ Неограниченный трафик</li>
+                    <li class="success-icon">✅ 10ms CPU time на запрос</li>
+                </ul>
+                <p><em>Для большинства проектов этого более чем достаточно!</em></p>
+            </div>
+
+            <!-- FAQ -->
+            <div class="step" style="border-left-color: #ffc107;">
+                <h2 style="color: #ffc107;">
+                    ❓ Часто задаваемые вопросы
+                </h2>
+
+                <p><strong>Q: Это безопасно?</strong></p>
+                <p>A: Да! Worker использует только публичный ключ API, который безопасен. Вся защита данных обеспечивается Row Level Security в Supabase.</p>
+
+                <p style="margin-top: 15px;"><strong>Q: Будет ли медленнее?</strong></p>
+                <p>A: Минимально. Cloudflare имеет серверы по всему миру. Задержка обычно 10-50ms.</p>
+
+                <p style="margin-top: 15px;"><strong>Q: Сколько стоит?</strong></p>
+                <p>A: Бесплатно до 100,000 запросов/день.</p>
+
+                <p style="margin-top: 15px;"><strong>Q: Можно использовать свой домен?</strong></p>
+                <p>A: Да! В настройках Worker → Triggers → Custom Domains</p>
+            </div>
+
+            <!-- Файлы проекта -->
+            <div class="step" style="border-left-color: #2196F3;">
+                <h2 style="color: #2196F3;">
+                    📁 Файлы проекта
+                </h2>
+                <ul>
+                    <li><strong>cloudflare-worker-code.js</strong> - код для копирования в Worker</li>
+                    <li><strong>КРАТКАЯ_ИНСТРУКЦИЯ.md</strong> - краткая текстовая версия</li>
+                    <li><strong>STEP_BY_STEP_WITH_SCREENSHOTS.md</strong> - подробная инструкция</li>
+                    <li><strong>CLOUDFLARE_WEB_DEPLOYMENT.md</strong> - развертывание через веб</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>SubManager</strong> - Управление подписками без VPN</p>
+            <p style="margin-top: 10px;">Время настройки: ~5 минут | Стоимость: Бесплатно</p>
+            <p style="margin-top: 20px; opacity: 0.8;">Если возникли проблемы - создайте issue в репозитории проекта</p>
+        </footer>
+    </div>
+
+    <script>
+        // Функция для копирования кода
+        document.querySelectorAll('.code-block').forEach(block => {
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.textContent = 'Копировать';
+            btn.onclick = () => {
+                const code = block.querySelector('code').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    btn.textContent = 'Скопировано!';
+                    setTimeout(() => {
+                        btn.textContent = 'Копировать';
+                    }, 2000);
+                });
+            };
+            block.appendChild(btn);
+        });
+    </script>
+</body>
+</html>
