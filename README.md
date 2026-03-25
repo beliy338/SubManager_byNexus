@@ -1,308 +1,709 @@
-# ☁️ SubManager - Cloud Subscription Management
+# 🚀 SubManager - Полная инструкция по установке и запуску
 
-A comprehensive subscription management application with **cloud synchronization**, **AI-powered insights**, multi-language support, currency conversion, and analytics.
+## 📖 Описание проекта
 
-## ✨ Latest Updates - v2.1 AI Edition
+**SubManager** - это полнофункциональное приложение для управления подписками с интеграцией российских платежных систем, парсингом почты, аналитикой затрат, прогнозированием трат и умными уведомлениями.
 
-🎉 **NEW:** AI-powered features using TensorFlow.js!
+### ✨ Основные возможности
 
-- 🤖 **AI Spending Predictions** - ML-based forecast of future expenses
-- 📧 **Email Parsing** - Auto-extract subscriptions from emails
-- 💡 **Smart Recommendations** - AI-powered savings suggestions
-- 🔒 **Privacy-First** - All AI runs locally in your browser
-- ✅ **Works in Russia** - No VPN required, completely offline-capable
-
-**[→ Activate AI Features (30 seconds)](/START_HERE_AI.md)**
-
-### Previous Updates - v2.0 Cloud Edition
-
-- ☁️ **Cloud Storage** - Never lose your data again
-- 🔄 **Multi-Device Sync** - Access from anywhere
-- 🔐 **Secure** - Protected with Row Level Security
-- 💾 **Auto Backup** - Your subscriptions are safe
-
-**[→ How to Activate Cloud Sync (5 min)](/КАК_АКТИВИРОВАТЬ_ОБЛАКО.md)**
+- 📊 **Централизованное отображение** всех активных подписок
+- 💳 **Автоматический сбор данных** через парсинг почты (TensorFlow.js & YandexGPT)
+- 📈 **Аналитика и визуализация** затрат с графиками
+- 🔮 **Прогнозирование трат** с помощью AI
+- 🔔 **Умные уведомления** о предстоящих платежах
+- 💡 **Рекомендации альтернативных** сервисов
+- 🌍 **Многоязычность** (RU, EN, BE, ZH, ES, FR) с флагами стран
+- 💱 **Поддержка валют** с автоматическим пересчётом курсов
+- 🎨 **Оранжево-чёрный дизайн** с переключателем на светлую тему
+- 👥 **Система ролей** (владельцы и обычные пользователи)
+- 🔒 **Полная аутентификация** через Supabase Auth
+- ☁️ **Облачное хранилище** данных в Supabase Database
+- 🛡️ **Row Level Security** для защиты данных
 
 ---
 
-## 🚀 Quick Start
+## 📋 Содержание
 
-### Option 1: Demo Account (No Setup Required)
-For instant access without any registration:
-- **Email**: `demo@submanager.app`
-- **Password**: `админ0`
-
-Click the **"🔑 Demo Login"** button on the login page.
-
-> **Note**: Demo account uses local storage (no cloud sync)
-
-### Option 2: Create Your Own Account (Recommended)
-1. Click **"Sign Up"** from the login page
-2. Fill in your name, email, and password (minimum 6 characters)
-3. Confirm your password
-4. You'll be automatically logged in
-5. **[Activate Cloud Sync](/КАК_АКТИВИРОВАТЬ_ОБЛАКО.md)** (5 minutes)
+1. [Требования](#требования)
+2. [Технологии](#технологии)
+3. [Установка](#установка)
+4. [Настройка Supabase](#настройка-supabase)
+5. [Переменные окружения](#переменные-окружения)
+6. [Миграции базы данных](#миграции-базы-данных)
+7. [Настройка флагов стран](#настройка-флагов-стран)
+8. [Настройка AI интеграций](#настройка-ai-интеграций)
+9. [Запуск проекта](#запуск-проекта)
+10. [Система ролей](#система-ролей)
+11. [Структура проекта](#структура-проекта)
+12. [Обход блокировки Supabase в России](#обход-блокировки-supabase-в-россии)
+13. [Troubleshooting](#troubleshooting)
 
 ---
 
-## 📊 Features
+## ⚙️ Требования
 
-### 🔐 Authentication & Cloud Sync
-- ✅ **User Registration & Login** via Supabase Auth
-- ✅ **Cloud Synchronization** - Data automatically syncs across devices
-- ✅ **Secure Storage** - Row Level Security protects your data
-- ✅ **Sync Status Indicator** - Visual feedback in sidebar
+Перед началом установки убедитесь, что у вас установлено:
 
-### 📝 Subscription Management
-- **Centralized Dashboard** - View all active subscriptions
-- **Full CRUD Operations** - Add, edit, delete subscriptions
-- **Categories** - Streaming, Software, Delivery, Cloud, Education, and more
-- **Billing Tracking** - Monthly/yearly cycles and next billing dates
-- **Status Management** - Active/inactive subscription states
-
-### 📈 Analytics & Insights
-- **Spending Analytics** - Visualize spending by category (pie charts)
-- **Trend Analysis** - View spending trends over time (line charts)
-- **Top Subscriptions** - See most expensive subscriptions (bar charts)
-- **Yearly Forecast** - Project annual subscription costs
-- **Monthly Totals** - Track your recurring expenses
-- **🤖 AI Predictions** - ML-powered spending forecasts (NEW!)
-
-### 🤖 AI Features (TensorFlow.js)
-- **Email Parsing** - Automatically extract subscriptions from emails
-- **Spending Predictions** - ML-based forecast for next month
-- **Smart Insights** - AI-generated recommendations
-- **Category Analysis** - Automatic spending breakdown
-- **Savings Potential** - Calculate possible savings
-- **Works Offline** - All AI runs locally in browser
-- **Privacy-First** - No data sent to external servers
-
-### 💡 Smart Features
-- **Alternative Recommendations** - Find cheaper alternatives
-- **Upcoming Billing Alerts** - See renewals in next 7 days
-- **Cost Savings Calculator** - Calculate potential savings
-- **Currency Conversion** - Real-time price conversion
-
-### 🎨 Customization
-- **Multi-Language Support** 
-  - 🇷🇺 Russian (Русский)
-  - 🇬🇧 English
-  - 🇧🇾 Belarusian (Беларуская)
-  - 🇨🇳 Chinese (中文)
-
-- **Multi-Currency** with auto-conversion
-  - ₽ RUB (Russian Ruble)
-  - $ USD (US Dollar)
-  - € EUR (Euro)
-  - ¥ CNY (Chinese Yuan)
-  - Br BYN (Belarusian Ruble)
-
-- **Font Size Options**: Small, Medium, Large
-
-- **Theme Switcher**
-  - 🌙 **Dark Theme**: Orange & Black
-  - ☀️ **Light Theme**: Purple, Orange & White
-  - Animated sun/moon toggle
+- **Node.js** >= 18.0.0
+- **npm** >= 9.0.0 или **pnpm** >= 8.0.0 (рекомендуется)
+- **Git**
+- Аккаунт **Supabase** (бесплатный план достаточен)
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠 Технологии
 
-- **Frontend**: React 18 + TypeScript
-- **Routing**: React Router v7 (Data Mode)
-- **Styling**: Tailwind CSS v4
-- **Animations**: Motion (Framer Motion)
-- **Charts**: Recharts
-- **AI/ML**: TensorFlow.js 4.22.0
-  - Local machine learning
-  - Email parsing & NLP
-  - Spending predictions
-  - No external API required
-- **Backend**: Supabase
-  - Authentication (Supabase Auth)
-  - Database (PostgreSQL)
-  - Row Level Security
-- **State Management**: React Context API
-- **Notifications**: Sonner
-- **Icons**: Lucide React
+### Frontend
+- **React** 18.3.1
+- **TypeScript**
+- **Tailwind CSS** v4.1.12
+- **Vite** 6.3.5
+- **React Router** 7.13.0
 
----
+### UI Компоненты
+- **Radix UI** - доступные компоненты
+- **Lucide React** - иконки
+- **Recharts** - графики и диаграммы
+- **Motion** (Framer Motion) - анимации
+- **Sonner** - уведомления
 
-## 📖 Documentation
+### Backend & Database
+- **Supabase** - база данных, аутентификация, хранилище
+- **PostgreSQL** - с Row Level Security
 
-### AI Features (NEW!)
-- 🤖 **[AI Quick Start (30s)](/START_HERE_AI.md)** - Activate AI features
-- 📚 **[AI Guide](/AI_README.md)** - Complete TensorFlow.js documentation
-- ⚡ **[AI Activation](/AI_QUICK_START.md)** - Step-by-step activation
-- 🇷🇺 **[Russia Setup](/RUSSIA_QUICK_FIX.md)** - Works without VPN
-- ✅ **[AI Complete](/AI_TENSORFLOW_COMPLETE.md)** - Implementation details
-
-### Quick Guides
-- 🚀 **[5-Minute Cloud Setup](/КАК_АКТИВИРОВАТЬ_ОБЛАКО.md)** - Activate cloud sync (Russian)
-- ⚡ **[Quick Database Setup](/QUICK_DATABASE_SETUP.md)** - Activate cloud sync (English)
-- 📘 **[Quick Start Guide](/БЫСТРЫЙ_СТАРТ.md)** - User guide (Russian)
-
-### Technical Documentation
-- 🗄️ **[Database Setup](/supabase/SETUP_DATABASE.md)** - Detailed database instructions
-- ☁️ **[Cloud Storage Guide](/ОНЛАЙН_СОХРАНЕНИЕ.md)** - Complete cloud sync documentation (Russian)
-- 📝 **[Setup Complete](/SETUP_COMPLETE.md)** - Checklist and troubleshooting
-- 📋 **[Changelog](/CHANGELOG_CLOUD_SYNC.md)** - Version 2.0 changes
+### AI & ML
+- **TensorFlow.js** - парсинг почты и анализ
+- **@tensorflow-models/universal-sentence-encoder** - обработка текста
+- **YandexGPT** (опционально) - альтернативная AI интеграция
 
 ---
 
-## 🎯 Getting Started
+## 📦 Установка
 
-### Step 1: Create Account
-1. Sign up with email and password
-2. Automatically logged in after registration
+### 1. Клонирование репозитория
 
-### Step 2: Activate Cloud Sync (One-Time Setup)
-1. Open [Supabase SQL Editor](https://app.supabase.com/project/echbyusirwoojodjhhzi/sql/new)
-2. Copy SQL from `/supabase/migrations/001_initial_schema.sql`
-3. Run the query
-4. **Done!** ✅ Cloud sync is now active
+```bash
+git clone https://github.com/your-username/submanager.git
+cd submanager
+```
 
-> **Detailed instructions:** See [КАК_АКТИВИРОВАТЬ_ОБЛАКО.md](/КАК_АКТИВИРОВАТЬ_ОБЛАКО.md)
+### 2. Установка зависимостей
 
-### Step 3: Start Using
-1. **Add Subscriptions** - Click "+ Add Subscription"
-2. **Customize Settings** - Change language, currency, theme
-3. **View Analytics** - Check spending patterns
-4. **Find Alternatives** - Click 💡 icon for cheaper options
+Рекомендуется использовать **pnpm**:
 
----
+```bash
+pnpm install
+```
 
-## 📱 Pages Overview
+Или с **npm**:
 
-- **🔐 Login/Signup** - User authentication
-- **📊 Dashboard** - Overview with upcoming billings
-- **💳 Subscriptions** - Full list with search and filters
-- **📈 Analytics** - Visual charts and insights
-- **⚙️ Settings** - Customize app preferences
+```bash
+npm install
+```
 
 ---
 
-## 🔄 Sync Status Indicators
+## 🗄️ Настройка Supabase
 
-Look for these in the sidebar:
+### Шаг 1: Создание проекта
 
-- **☁️ Cloud Synced** (green) - Data saved to cloud
-- **🔄 Syncing...** (blue) - Saving in progress
-- **📱 Local Storage** (orange) - Demo account (no sync)
+1. Перейдите на [supabase.com](https://supabase.com)
+2. Войдите или зарегистрируйтесь
+3. Нажмите **"New Project"**
+4. Заполните данные:
+   - **Name**: SubManager
+   - **Database Password**: придумайте надёжный пароль
+   - **Region**: выберите ближайший регион (Europe West рекомендуется)
+   - **Pricing Plan**: Free (достаточно для начала)
+5. Нажмите **"Create new project"** и дождитесь создания (1-2 минуты)
 
----
+### Шаг 2: Получение ключей доступа
 
-## 💾 Data Structure
+1. В левом меню выберите **"Settings"** → **"API"**
+2. Скопируйте следующие данные:
+   - **Project URL**: `https://your-project-id.supabase.co`
+   - **Project ID**: `your-project-id` (из URL)
+   - **anon public key**: начинается с `eyJ...`
 
-Each subscription includes:
-- **Name** - Service name (e.g., "Netflix")
-- **Category** - Type of service
-- **Price** - Cost in selected currency
-- **Billing Cycle** - Monthly or Yearly
-- **Next Billing** - Date of next charge
-- **Status** - Active or Inactive
+### Шаг 3: Настройка аутентификации
 
----
-
-## 🔐 Security
-
-- ✅ **Supabase Auth** - Industry-standard authentication
-- ✅ **Row Level Security** - Database-level protection
-- ✅ **Encrypted Passwords** - Never stored in plain text
-- ✅ **User Isolation** - Each user sees only their data
-- ✅ **HTTPS** - All connections encrypted
-
----
-
-## 🌍 Currency Exchange Rates
-
-Automatic conversion using these rates:
-- 1 USD = 80 RUB
-- 1 EUR = 95 RUB
-- 1 CNY = 12 RUB
-- 1 BYN = 27 RUB
-
-All prices automatically recalculate when you change currency.
+1. В левом меню выберите **"Authentication"** → **"Providers"**
+2. Включите **Email** провайдер (должен быть включен по умолчанию)
+3. В разделе **"Email Auth"**:
+   - Включите **"Enable email confirmations"** (опционально)
+   - Настройте **Email Templates** если нужно
 
 ---
 
-## 🆚 Version Comparison
+## 🔑 Переменные окружения
 
-| Feature | v1.0 | v2.0 (Current) |
-|---------|------|----------------|
-| Storage | localStorage | ☁️ Supabase Cloud |
-| Multi-Device | ❌ No | ✅ Yes |
-| Sync | ❌ No | ✅ Automatic |
-| Backup | ❌ No | ✅ Automatic |
-| Security | Browser | ✅ RLS + Auth |
+### Создание файлов конфигурации
+
+#### 1. Создайте файл `/utils/supabase/info.tsx`
+
+```tsx
+// Supabase Project Configuration
+export const projectId = "your-project-id"; // Замените на ваш Project ID
+export const publicAnonKey = "your-anon-public-key"; // Замените на ваш anon key
+```
+
+**⚠️ Важно**: 
+- Замените `your-project-id` на ваш реальный Project ID
+- Замените `your-anon-public-key` на ваш реальный anon key из Supabase
+
+#### 2. Создайте файл `.env` (опционально, для прокси)
+
+Если вы находитесь в России и Supabase заблокирован:
+
+```env
+VITE_SUPABASE_PROXY_URL=https://your-worker.your-subdomain.workers.dev
+```
+
+> См. раздел [Обход блокировки Supabase в России](#обход-блокировки-supabase-в-россии)
+
+#### 3. YandexGPT API (опционально)
+
+Если хотите использовать YandexGPT:
+
+```env
+VITE_YANDEX_API_KEY=your-yandex-api-key
+VITE_YANDEX_FOLDER_ID=your-yandex-folder-id
+```
+
+---
+
+## 🗃️ Миграции базы данных
+
+Необходимо выполнить SQL скрипты в **Supabase SQL Editor** по порядку:
+
+### Порядок выполнения миграций
+
+1. **Базовая схема** → `/supabase/migrations/001_initial_schema.sql`
+2. **Таблица сервисов** → `/supabase-services-table.sql`
+3. **Система уведомлений** → `/supabase-notifications-system.sql`
+4. **Система поддержки** → `/supabase-support-complete-setup.sql`
+5. **Флаги стран** → `/supabase/migrations/002_country_flags.sql`
+6. **AI разрешения** → `/ADD_AI_PERMISSION_COLUMN.sql`
+7. **Российские сервисы** (опционально) → `/supabase-insert-russian-universal-services.sql`
+
+### Как выполнить миграции
+
+1. Откройте **Supabase Dashboard**
+2. Перейдите в **"SQL Editor"**
+3. Нажмите **"New query"**
+4. Скопируйте содержимое SQL файла
+5. Нажмите **"Run"** или нажмите `Ctrl+Enter`
+6. Убедитесь что запрос выполнился без ошибок
+7. Повторите для всех миграций по порядку
+
+### Проверка миграций
+
+После выполнения всех миграций проверьте что созданы таблицы:
+
+```sql
+SELECT table_name 
+FROM information_schema.tables 
+WHERE table_schema = 'public';
+```
+
+Должны быть следующие таблицы:
+- ✅ `subscriptions`
+- ✅ `user_settings`
+- ✅ `services`
+- ✅ `notification_settings`
+- ✅ `notification_logs`
+- ✅ `support_messages`
+- ✅ `country_flags`
+
+---
+
+## 🏴 Настройка флагов стран
+
+Флаги стран должны быть автоматически добавлены миграцией `002_country_flags.sql`.
+
+### Проверка флагов
+
+Выполните в SQL Editor:
+
+```sql
+SELECT country_code, language_code, flag_emoji 
+FROM country_flags 
+ORDER BY country_code;
+```
+
+Должны быть флаги для: RU, GB, BY, CN, ES, FR
+
+### Если флагов нет
+
+Выполните вручную:
+
+```sql
+INSERT INTO country_flags (country_code, language_code, flag_url, flag_emoji) VALUES
+  ('RU', 'ru', 'https://flagcdn.com/w320/ru.png', '🇷🇺'),
+  ('GB', 'en', 'https://flagcdn.com/w320/gb.png', '🇬🇧'),
+  ('BY', 'be', 'https://flagcdn.com/w320/by.png', '🇧🇾'),
+  ('CN', 'zh', 'https://flagcdn.com/w320/cn.png', '🇨🇳'),
+  ('ES', 'es', 'https://flagcdn.com/w320/es.png', '🇪🇸'),
+  ('FR', 'fr', 'https://flagcdn.com/w320/fr.png', '🇫🇷')
+ON CONFLICT (country_code) DO UPDATE SET
+  flag_url = EXCLUDED.flag_url,
+  flag_emoji = EXCLUDED.flag_emoji;
+```
+
+### Дополнительная информация
+
+См. файлы:
+- `/ИНСТРУКЦИЯ_УСТАНОВКИ_ФЛАГОВ.md` - подробная инструкция
+- `/FLAGS_SETUP_GUIDE.txt` - руководство по настройке
+- `/ЧЕК_ЛИСТ_ФЛАГИ.md` - чек-лист проверки
+
+---
+
+## 🤖 Настройка AI интеграций
+
+### TensorFlow.js (встроен, работает автономно)
+
+TensorFlow.js работает в браузере и не требует дополнительной настройки:
+
+- ✅ Парсинг почты для автоматического добавления подписок
+- ✅ Анализ текста и извлечение информации
+- ✅ Прогнозирование трат
+- ✅ **Не требует API ключей**
+- ✅ **Работает офлайн**
+
+### YandexGPT (опционально, для улучшенной AI)
+
+#### 1. Получение API ключа
+
+1. Перейдите на [cloud.yandex.ru](https://cloud.yandex.ru)
+2. Создайте аккаунт или войдите
+3. Создайте новый **Folder** (каталог)
+4. В разделе **API Keys** создайте **Service Account**
+5. Создайте **API Key** для этого Service Account
+6. Скопируйте API Key и Folder ID
+
+#### 2. Настройка в проекте
+
+Добавьте в `.env`:
+
+```env
+VITE_YANDEX_API_KEY=your-api-key-here
+VITE_YANDEX_FOLDER_ID=your-folder-id-here
+```
+
+#### 3. Ограничения бесплатного тарифа
+
+- **Trial period**: 1000 запросов в день
+- **После trial**: 1000 запросов в месяц бесплатно
+- **Timeout**: 15 секунд на запрос
+
+> Подробнее: `/YANDEXGPT_INTEGRATION.md`
+
+### AI Permission Modal
+
+При первом входе пользователь увидит модальное окно с запросом разрешения на использование AI:
+
+- **"Да"** - AI функции будут включены
+- **"Позже"** - окно появится при следующем входе
+- **"Никогда"** - AI функции отключены навсегда
+
+Выбор сохраняется в БД (`user_settings.ai_permission`) и синхронизируется между устройствами.
+
+---
+
+## 🚀 Запуск проекта
+
+### Development режим
+
+```bash
+pnpm run dev
+```
+
+или
+
+```bash
+npm run dev
+```
+
+Приложение запустится на `http://localhost:5173`
+
+### Production build
+
+```bash
+pnpm run build
+```
+
+Сгенерированные файлы будут в папке `/dist`
+
+### Предпросмотр production build
+
+```bash
+pnpm run preview
+```
+
+---
+
+## 👥 Система ролей
+
+В приложении две роли:
+
+### 🔑 Владельцы (Owners)
+
+Email адреса:
+- `max.sokolvp@gmail.com`
+- `belovodvadim@gmail.com`
+
+**Права**:
+- ✅ Создание новых сервисов
+- ✅ Редактирование сервисов
+- ✅ Удаление сервисов
+- ✅ Управление тарифными планами
+- ✅ Просмотр всех сообщений в Support Chat
+- ✅ Ответы на сообщения пользователей
+- ✅ Все права обычных пользователей
+
+### 👤 Обычные пользователи
+
+**Права**:
+- ✅ Просмотр созданных сервисов
+- ✅ Добавление подписок из списка сервисов
+- ✅ Создание кастомных подписок
+- ✅ Редактирование своих подписок
+- ✅ Удаление своих подписок
+- ✅ Просмотр аналитики
+- ✅ Настройка уведомлений
+- ✅ Отправка сообщений в Support
+- ❌ Создание/редактирование сервисов
+
+### Как стать владельцем
+
+Владельцами могут быть только аккаунты с email:
+- `max.sokolvp@gmail.com`
+- `belovodvadim@gmail.com`
+
+Эти email жестко прописаны в политиках RLS базы данных.
+
+**Для добавления нового владельца**:
+
+1. Выполните SQL запрос в Supabase:
+
+```sql
+-- Пример добавления нового владельца
+-- Замените все политики, добавив новый email
+
+ALTER POLICY "Only owners can insert services" ON public.services
+WITH CHECK (
+  LOWER(auth.jwt() ->> 'email') IN (
+    'max.sokolvp@gmail.com', 
+    'belovodvadim@gmail.com',
+    'new-owner@example.com'
+  )
+);
+
+-- Повторите для всех политик с проверкой владельца
+```
+
+---
+
+## 📁 Структура проекта
+
+```
+submanager/
+├── src/
+│   ├── app/
+│   │   ├── components/          # React компоненты
+│   │   │   ├── ui/              # UI компоненты (Radix UI)
+│   │   │   ├── AddSubscriptionModal.tsx
+│   │   │   ├── EditSubscriptionModal.tsx
+│   │   │   ├── SupportModal.tsx
+│   │   │   ├── AIPermissionModal.tsx
+│   │   │   ├── NotificationsModal.tsx
+│   │   │   └── ...
+│   │   ├── contexts/            # React контексты
+│   │   │   └── AppContext.tsx   # Глобальный стейт
+│   │   ├── layouts/             # Лейауты
+│   │   │   └── MainLayout.tsx
+│   │   ├── pages/               # Страницы приложения
+│   │   │   ├── Dashboard.tsx    # Главная страница
+│   │   │   ├── Subscriptions.tsx
+│   │   │   ├── Analytics.tsx
+│   │   │   ├── Profile.tsx
+│   │   │   ├── Settings.tsx
+│   │   │   ├── Login.tsx
+│   │   │   └── Signup.tsx
+│   │   ├── utils/               # Утилиты
+│   │   │   ├── supabase.ts      # Supabase клиент
+│   │   │   ├── api.ts           # API функции
+│   │   │   ├── roles.ts         # Проверка ролей
+│   │   │   ├── translations.ts  # Переводы
+│   │   │   ├── tensorflow.ts    # TensorFlow.js
+│   │   │   ├── yandexgpt.ts     # YandexGPT
+│   │   │   └── flags.ts         # Флаги стран
+│   │   ├── routes.tsx           # Роутинг (React Router)
+│   │   └── App.tsx              # Главный компонент
+│   └── styles/
+│       ├── index.css            # Глобальные стили
+│       ├── theme.css            # CSS переменные темы
+│       ├── tailwind.css         # Tailwind импорты
+│       └── fonts.css            # Импорт шрифтов
+├── supabase/
+│   ├── migrations/              # SQL миграции
+│   │   ├── 001_initial_schema.sql
+│   │   └── 002_country_flags.sql
+│   └── functions/               # Edge Functions (опционально)
+├── utils/
+│   └── supabase/
+│       └── info.tsx             # Конфигурация Supabase
+├── package.json
+├── vite.config.ts
+├── postcss.config.mjs
+└── README_SETUP.md              # Этот файл
+```
+
+---
+
+## 🌐 Обход блокировки Supabase в России
+
+Если Supabase заблокирован в вашем регионе, используйте Cloudflare Workers:
+
+### Вариант 1: Использование готового Worker (рекомендуется)
+
+1. **Создайте Cloudflare Worker**:
+   - Зарегистрируйтесь на [cloudflare.com](https://cloudflare.com)
+   - Перейдите в **Workers & Pages**
+   - Нажмите **Create Application** → **Create Worker**
+   - Название: `supabase-proxy`
+
+2. **Скопируйте код**:
+   - Откройте файл `/cloudflare-worker-code.js`
+   - Скопируйте весь код
+   - Вставьте в Worker Editor
+   - Замените `YOUR_SUPABASE_PROJECT_ID` на ваш Project ID
+
+3. **Деплой**:
+   - Нажмите **Save and Deploy**
+   - Скопируйте URL Worker: `https://supabase-proxy.your-subdomain.workers.dev`
+
+4. **Настройте в проекте**:
+   - Создайте файл `.env` в корне проекта
+   - Добавьте:
+   ```env
+   VITE_SUPABASE_PROXY_URL=https://supabase-proxy.your-subdomain.workers.dev
+   ```
+
+### Вариант 2: VPN
+
+Используйте VPN для подключения к Supabase напрямую.
+
+### Проверка подключения
+
+После настройки прокси или VPN:
+
+1. Запустите приложение
+2. Откройте консоль браузера (F12)
+3. Попробуйте войти или зарегистрироваться
+4. Если нет ошибок сети - всё работает
+
+> Подробнее: 
+> - `/CLOUDFLARE_DEPLOY_GUIDE_RU.md`
+> - `/ИНСТРУКЦИЯ_CLOUDFLARE_WORKER.html`
+> - `/QUICK_START_PROXY.md`
 
 ---
 
 ## 🐛 Troubleshooting
 
-### "Local Storage" instead of "Cloud Synced"?
-- Check if database migration was applied
-- See: [КАК_АКТИВИРОВАТЬ_ОБЛАКО.md](/КАК_АКТИВИРОВАТЬ_ОБЛАКО.md)
+### Проблема: "Failed to fetch" при входе
 
-### Data not syncing between devices?
-- Ensure you're using the same email/password
-- Verify "Cloud Synced" status in sidebar
-- Check browser console (F12) for errors
+**Решение**: Проверьте:
+1. Правильность `projectId` и `publicAnonKey` в `/utils/supabase/info.tsx`
+2. Доступность Supabase (попробуйте открыть `https://your-project-id.supabase.co` в браузере)
+3. Настройте Cloudflare Worker если Supabase заблокирован
 
-### Support chat error: "infinite recursion detected"?
-- **Quick Fix:** [СРОЧНОЕ_ИСПРАВЛЕНИЕ.md](/СРОЧНОЕ_ИСПРАВЛЕНИЕ.md) (2 minutes)
-- **Detailed Guide:** [README_RECURSION_FIX.md](/README_RECURSION_FIX.md)
-- **All Documentation:** [INDEX_RECURSION_FIX.md](/INDEX_RECURSION_FIX.md)
+### Проблема: "JWT expired" или "Invalid JWT"
 
-### Need more help?
-- 📚 Check documentation files
-- 🔍 Look in `/SETUP_COMPLETE.md` for common issues
+**Решение**: Пользователь был разлогинен. Очистите localStorage:
+
+```javascript
+localStorage.clear()
+```
+
+Затем перезагрузите страницу и войдите снова.
+
+### Проблема: "Row Level Security policy violation"
+
+**Решение**: 
+1. Проверьте что все миграции выполнены
+2. Проверьте что RLS политики созданы
+3. Убедитесь что пользователь аутентифицирован
+
+Выполните в SQL Editor:
+
+```sql
+-- Проверка политик для subscriptions
+SELECT * FROM pg_policies WHERE tablename = 'subscriptions';
+
+-- Проверка политик для user_settings
+SELECT * FROM pg_policies WHERE tablename = 'user_settings';
+```
+
+### Проблема: Флаги стран не отображаются
+
+**Решение**: 
+1. Проверьте что миграция `002_country_flags.sql` выполнена
+2. Проверьте данные:
+```sql
+SELECT * FROM country_flags;
+```
+3. Если данных нет - выполните INSERT вручную (см. раздел [Настройка флагов стран](#настройка-флагов-стран))
+
+### Проблема: AI функции не работают
+
+**Решение**:
+
+1. **TensorFlow.js**:
+   - Откройте консоль браузера
+   - Проверьте ошибки загрузки моделей
+   - Модели загружаются при первом использовании (может занять время)
+
+2. **YandexGPT**:
+   - Проверьте правильность API ключа
+   - Проверьте что Folder ID корректен
+   - Проверьте лимиты (1000 запросов/день в trial)
+
+### Проблема: Support Chat рекурсивное обновление
+
+**Решение**: Обновлено в последней версии. Проверьте что у вас актуальная версия файлов:
+- `/src/app/components/SupportModal.tsx`
+- `/supabase-support-complete-setup.sql`
+
+### Проблема: Ошибка при деплое на Cloudflare
+
+**Решение**:
+1. Проверьте что Workers включены в вашем плане
+2. Проверьте синтаксис в Worker коде
+3. См. подробную инструкцию `/CLOUDFLARE_DEPLOY_GUIDE_RU.md`
 
 ---
 
-## 🎨 Design
+## 📚 Дополнительная документация
 
-### Dark Theme (Default)
-- Primary: Orange (#FF6B35)
-- Accent: Dark Orange (#F7931E)
-- Background: Black/Dark Gray
+В проекте есть множество документов с подробными инструкциями:
 
-### Light Theme
-- Primary: Purple (#8B5CF6)
-- Accent: Orange (#F59E0B)
-- Background: White/Light Gray
+### Быстрый старт
+- `/БЫСТРЫЙ_СТАРТ.md` - краткая инструкция
+- `/QUICK_START_GUIDE.md` - Quick Start на английском
+- `/START_HERE.md` - начальная точка
 
-**Toggle**: Click sun/moon icon in top-right
+### Cloudflare Worker
+- `/CLOUDFLARE_DEPLOY_GUIDE_RU.md` - развёртывание Worker
+- `/ИНСТРУКЦИЯ_CLOUDFLARE_WORKER.html` - визуальная инструкция
+- `/QUICK_START_PROXY.md` - быстрая настройка прокси
+
+### Система ролей
+- `/OWNERS_GUIDE.md` - руководство для владельцев
+- `/ACTIVATION_OWNERS.md` - активация системы владельцев
+- `/README_OWNERS.md` - документация по ролям
+
+### AI интеграции
+- `/AI_README.md` - полное руководство по AI
+- `/YANDEXGPT_INTEGRATION.md` - интеграция YandexGPT
+- `/MIGRATION_GEMINI_TO_TENSORFLOW.md` - миграция с Gemini на TensorFlow
+
+### Флаги стран
+- `/ИНСТРУКЦИЯ_УСТАНОВКИ_ФЛАГОВ.md` - установка флагов
+- `/COUNTRY_FLAGS_README.md` - документация по флагам
+- `/ЧЕК_ЛИСТ_ФЛАГИ.md` - чек-лист проверки
+
+### База данных
+- `/QUICK_DATABASE_SETUP.md` - быстрая настройка БД
+- `/supabase/SETUP_DATABASE.md` - полная настройка БД
+- `/ШПАРГАЛКА_SQL.md` - SQL команды
+
+### Email уведомления
+- `/EMAIL_TEMPLATES_README.md` - шаблоны email
+- `/SMART-NOTIFICATIONS-README.md` - система уведомлений
+- `/SETUP-NOTIFICATIONS.md` - настройка уведомлений
+
+### Support система
+- `/UNIFIED_SUPPORT_README.md` - система поддержки
+- `/SUPPORT_SETUP_INSTRUCTIONS.md` - настройка чата
 
 ---
 
-## 🔮 Future Enhancements
+## 🎯 Следующи�� шаги после установки
 
-- [ ] Automatic localStorage migration to cloud
-- [ ] Email notifications for upcoming billings
-- [ ] Payment integration (Russian systems)
-- [ ] Mobile app (iOS/Android)
-- [ ] Data export (CSV/Excel)
-- [ ] Subscription sharing with family
-- [ ] Budget limits and alerts
+1. **Зарегистрируйте аккаунт**:
+   - Откройте приложение
+   - Нажмите "Регистрация"
+   - Заполните данные
+   - Подтвердите email (если включено)
+
+2. **Настройте профиль**:
+   - Перейдите в Settings
+   - Выберите язык и валюту
+   - Настройте тему (светлая/тёмная)
+   - Настройте AI разрешения
+
+3. **Добавьте первую подписку**:
+   - Перейдите на Dashboard
+   - Нажмите "Добавить подписку"
+   - Выберите сервис или создайте кастомный
+
+4. **Настройте уведомления**:
+   - Откройте Notifications
+   - Включите нужные типы уведомлений
+   - Установите время напоминания
+
+5. **Попробуйте AI функции**:
+   - Используйте парсинг почты для импорта подписок
+   - Посмотрите прогноз трат
+   - Получите рекомендации альтернатив
+
+6. **Для владельцев - создайте сервисы**:
+   - Войдите как владелец
+   - В Dashboard нажмите "+"
+   - Создайте сервисы с тарифными планами
+   - Добавьте описания и иконки
 
 ---
 
-## 📄 License
+## 📞 Поддержка
 
-Built with ❤️ using Figma Make
+Если у вас возникли проблемы:
 
----
-
-## 🙏 Powered By
-
-- [Supabase](https://supabase.com) - Cloud database & auth
-- [React](https://react.dev) - UI framework
-- [Tailwind CSS](https://tailwindcss.com) - Styling
-- [Recharts](https://recharts.org) - Data visualization
+1. **Проверьте документацию** - в проекте более 100 файлов с инструкциями
+2. **Используйте Support Chat** в приложении
+3. **Напишите владельцам**:
+   - max.sokolvp@gmail.com
+   - belovodvadim@gmail.com
 
 ---
 
-**Start managing your subscriptions smarter today! ☁️✨**
+## 📄 Лицензия
 
-> **Quick Start**: [Activate Cloud Sync in 5 Minutes](/КАК_АКТИВИРОВАТЬ_ОБЛАКО.md)
+Частный проект. Все права защищены.
+
+---
+
+## 🙏 Благодарности
+
+- **Supabase** - за отличный BaaS
+- **Radix UI** - за доступные компоненты
+- **TensorFlow.js** - за ML в браузере
+- **YandexGPT** - за AI API
+- **Cloudflare** - за Workers и CDN
+
+---
+
+**Дата обновления**: 25 марта 2026
+
+**Версия**: 1.0.0
+
+**Разработчики**: 
+- Max Sokolov (max.sokolvp@gmail.com)
+- Vadim Belovod (belovodvadim@gmail.com)
+
+---
+
+✨ **Готово! Приятного использования SubManager!** ✨
