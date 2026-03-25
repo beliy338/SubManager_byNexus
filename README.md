@@ -83,7 +83,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone https://github.com/your-username/submanager.git
+git clone https://github.com/beliy338/SubManager_byNexus.git
 cd submanager
 ```
 
